@@ -24,6 +24,11 @@ LOCAL INFILE 'D:/Documents/druby/cs126/sql/Songs.1.csv'
 INTO TABLE songs 
 FIELDS TERMINATED BY ',';
 
+LOAD DATA 
+LOCAL INFILE 'C:/Users/Administrator/Documents/GitHub/CSci226.Fall13/mysql/Songs.1.csv' 
+INTO TABLE songs 
+FIELDS TERMINATED BY ',';
+
 select count(*) from songs;
 
 select artist, count(*) as countit from 
