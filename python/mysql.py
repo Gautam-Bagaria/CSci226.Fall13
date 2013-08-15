@@ -25,3 +25,23 @@ def test2():
    print "Table Rows:", row[0]
    cursor.close ()
    conn.close ()
+
+def test3():
+   conn = MySQLdb.connect (host = "localhost",
+                           user = "cs126",
+                           passwd = "cs126",
+                           db = "music")
+   cursor = conn.cursor ()
+   cursor.execute ("select artist, count(*) as countit from " +
+      "(select * from songs where High = 1) song " +
+      "group by artist having count(*) > 15 ")
+                   
+   row = cursor.fetchone ()
+   while row != None:
+      print "Table Rows:",
+      for i in row:
+         print i,
+      print " "
+      row = cursor.fetchone ()
+   cursor.close ()
+   conn.close ()
