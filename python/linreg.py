@@ -16,6 +16,9 @@ DATABASE = "music"
 TABLE = "songs"
 # DATABASE = "ratest"
 # TABLE = "R2"
+x_item = 'PK'
+y_item = 'High'
+
 def count(item):
    conn = MySQLdb.connect (host = "localhost",
                            user = "cs126",
@@ -103,12 +106,11 @@ def load(item):
    return out
 
 def plot(X,Y,m, b):
-   x = np.linspace(0,2*np.pi,100)
    Y1 = []
    for x in X:
        Y1.append(m*x+b)
    # Create the plot
-   plt.plot(X,Y)
+   plt.plot(X,Y,'o')
    plt.plot(X,Y1)
    # Save the figure in a separate file
    plt.savefig('linreg.png')
@@ -116,12 +118,28 @@ def plot(X,Y,m, b):
    # Draw the plot to the screen
    plt.show()
     
+def test1():
+   global x_item, y_item, DATABASE, TABLE
+   x_item = 'PK'
+   y_item = 'High'
+   DATABASE = "music"
+   TABLE = "songs"
 
-x_item = 'PK'
-y_item = 'High'
-# x_item = 'K'
-# y_item = 'F'
-[[n, sum_x, sum_y, sum_x2, sum_y2, sum_xy], m, b, r] = linreg(y_item, x_item)
+def test2():
+   global x_item, y_item, DATABASE, TABLE
+   DATABASE = "ratest"
+   TABLE = "R2"
+   x_item = 'K'
+   y_item = 'F'
+
+def runit():
+   global x_item, y_item, DATABASE, TABLE
+   X = load(x_item)
+   Y = load(y_item)
+   [[n, sum_x, sum_y, sum_x2, sum_y2, sum_xy], m, b, r] = linreg(y_item, x_item)   
+   plot(X,Y, m, b)
+
+[[n, sum_x, sum_y, sum_x2, sum_y2, sum_xy], m, b, r] = linreg(y_item, x_item)   
 X = load(x_item)
 Y = load(y_item)
 plot(X,Y, m, b)
