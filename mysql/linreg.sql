@@ -11,14 +11,23 @@ select sum(High2) from
 select sum(CH*High) as XY from songs limit 50000
  
 select count(CH) from songs
+drop database cs126
+create database cs126a
 select * from r1
 
+use cs126a
 create table iris_2d (x float, y float, class varchar(30));
-
+ 
 LOAD DATA 
 LOCAL INFILE 'D:/Documents/GitHub/CSci226.Fall13/assignments/iris/iris.2D.csv' 
 INTO TABLE iris_2d
 FIELDS TERMINATED BY ',';
+
+LOAD DATA 
+LOCAL INFILE 'C:/Users/Administrator/Documents/GitHub/CSci226.Fall13/assignments/iris/iris.2D.csv'
+INTO TABLE iris_2d
+FIELDS TERMINATED BY ',';
+
 
 select * from iris_2d;
 
