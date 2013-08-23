@@ -41,7 +41,7 @@ def sum_1(item):
    row = cursor.fetchone ()
    cursor.close ()
    conn.close ()
-   return (row[0])
+   return float(row[0])
 
 def sum_1sq(item):
    conn = MySQLdb.connect (host = "localhost",
@@ -77,12 +77,12 @@ def linreg(Y, X):
     sum_y2 = sum_1sq(Y)
 
     sum_xy = sum_2(X, Y)
-    m = (n*sum_xy - float(sum_x*sum_y))
-    m = m/(n*sum_x2-float(sum_x**2))
-    b = (float(sum_y) - m*float(sum_x))/n
-    r = (float(n)*sum_xy - float(sum_x*sum_y))
-    r1 = sqrt(float(n*sum_y2) - float(sum_y**2))
-    r2 = sqrt(float(n*sum_x2) - float(sum_x**2))
+    m = (n*sum_xy - sum_x*sum_y)
+    m = m/(n*sum_x2-sum_x**2)
+    b = (sum_y - m*sum_x)/n
+    r = (n*sum_xy - sum_x*sum_y)
+    r1 = sqrt(n*sum_y2 - sum_y**2)
+    r2 = sqrt(n*sum_x2 - sum_x**2)
     r = r/(r1*r2)
     vals = [n, sum_x, sum_y, sum_x2, sum_y2, sum_xy]
     return [vals, m, b, r]
@@ -139,10 +139,12 @@ def runit():
    [[n, sum_x, sum_y, sum_x2, sum_y2, sum_xy], m, b, r] = linreg(y_item, x_item)   
    plot(X,Y, m, b)
 
-[[n, sum_x, sum_y, sum_x2, sum_y2, sum_xy], m, b, r] = linreg(y_item, x_item)   
+[[n, sum_x, sum_y, sum_x2, sum_y2, sum_xy], m, b, r] = linreg(y_item, x_item)
 X = load(x_item)
 Y = load(y_item)
 plot(X,Y, m, b)
+var1 = (sum_x2/n - (sum_x/n)**2)
+var2 = np.var(X)
 
 
                    
