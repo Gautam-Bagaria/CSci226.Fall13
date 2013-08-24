@@ -8,3 +8,6 @@ insert into TImage values ("Thomans Bayes",
 insert into TImage values ("Thomans Bayes", 
    "http://www.arthurx.org/Thomas_Bayes/Thomas_Bayes_Grafure.gif");
 select * from Timage
+
+delete from Timage
+insert into Timage values ('thomas bayes', 'http://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Thomas_Bayes.gif/225px-Thomas_Bayes.gif')
