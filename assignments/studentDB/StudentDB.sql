@@ -13,7 +13,7 @@ delete from StudentDB
 select * from StudentDB
 select * from StudentDB where semester = 'Fall'
 select * from StudentDB where semester = 'Fall' and year=2013
-select '2013', count(*) from StudentDB where semester = 'Fall' and year=2013
+select 'Fall', '2013', count(*) from StudentDB where semester = 'Fall' and year=2013
 
 LOAD DATA 
 LOCAL INFILE 'D:/Documents/GitHub/CSci226.Fall13/assignments/StudentDB/StudentDB.csci226.csv' 

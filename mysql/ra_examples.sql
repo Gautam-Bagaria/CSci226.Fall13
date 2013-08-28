@@ -30,4 +30,10 @@ insert into R2 values (2, 56);
 insert into R2 values (3, 62);
 insert into R2 values (4, 66);
 
+drop table RX
+create table RX ( a int, b int, c int)
+insert into RX (a, b) 
+   (select k, f from r1 natural join r2)
 
+select * from RX
+select k, f from r1 natural join r2
