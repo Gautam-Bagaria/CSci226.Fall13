@@ -1,3 +1,5 @@
+create database StudentDB
+use StudentDB
 drop table StudentDB
 create table StudentDB(FName varchar(20), LName varchar(20), semester varchar(20),
    year int, CourseID varchar(20), CourseDesc varchar(20), units int, grade char(2))
@@ -31,7 +33,7 @@ LOCAL INFILE 'C:/Users/Administrator/Documents/GitHub/CSci226.Fall13/assignments
 INTO TABLE StudentDB
 FIELDS TERMINATED BY ','
 (FName, LName, semester, year, CourseID, CourseDesc, units, grade);
-
+ 
 LOAD DATA 
 LOCAL INFILE 'C:/Users/Administrator/Documents/GitHub/CSci226.Fall13/assignments/StudentDB/StudentDB.csci226.csv' 
 INTO TABLE StudentDB
@@ -55,7 +57,7 @@ select grade from StudentDB where grade like 'B%'
 select grade from StudentDB where grade = 'B'
 select * from StudentDB where grade = 'B'
 select count(*) from StudentDB where grade ='B'
-
+ 
 update StudentDB set grade = 'B' where grade like 'B%'
 select * from StudentDB where grade like 'C%' and grade != 'CR'
 
@@ -64,7 +66,7 @@ update StudentDB set FName = 'Antony' where FName = 'Anthony'
 insert into Person (FName, LName) 
 select FName, LName from StudentDB group by FName, LName;
 select * from Person
-
+ 
 insert into Transcript select  
    pid, semester, year, CourseID, CourseDesc, units, grade
    from StudentDB join Person 
