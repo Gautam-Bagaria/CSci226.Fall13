@@ -1,3 +1,5 @@
+create database music;
+use music;
 drop table songs;
 
 create table songs (
@@ -23,7 +25,7 @@ LOAD DATA
 LOCAL INFILE 'D:/Documents/druby/cs126/sql/Songs.1.csv' 
 INTO TABLE songs 
 FIELDS TERMINATED BY ',';
-
+ 
 LOAD DATA 
 LOCAL INFILE 'C:/Users/Administrator/Documents/GitHub/CSci226.Fall13/mysql/Songs.1.csv' 
 INTO TABLE songs 

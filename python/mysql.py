@@ -6,7 +6,7 @@ def test1():
    conn = MySQLdb.connect (host = "localhost",
                            user = "cs126",
                            passwd = "cs126",
-                           db = "music")
+                           db = "world")
    cursor = conn.cursor ()
    cursor.execute ("SELECT VERSION()")
    row = cursor.fetchone ()
