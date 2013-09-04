@@ -139,6 +139,14 @@ def runit():
    [[n, sum_x, sum_y, sum_x2, sum_y2, sum_xy], m, b, r] = linreg(y_item, x_item)   
    plot(X,Y, m, b)
 
+def theta_x(theta, X):
+   n = len(theta)
+   y = 0
+   for i in range(n):
+      y += theta[i]*X[i]
+   return y
+
+test2()
 [[n, sum_x, sum_y, sum_x2, sum_y2, sum_xy], m, b, r] = linreg(y_item, x_item)
 X = load(x_item)
 Y = load(y_item)
