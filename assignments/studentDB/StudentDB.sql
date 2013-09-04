@@ -66,7 +66,7 @@ update StudentDB set FName = 'Antony' where FName = 'Anthony'
 insert into Person (FName, LName) 
 select FName, LName from StudentDB group by FName, LName;
 select * from Person
- 
+  
 insert into Transcript select  
    pid, semester, year, CourseID, CourseDesc, units, grade
    from StudentDB join Person 
@@ -74,3 +74,19 @@ insert into Transcript select
    StudentDB.LName = Person.LName
 
 select * from Transcript join Person on Transcript.sid = Person.pid
+
+drop table JobHistory
+create table JobHistory (pid int, jobtitle varchar(40), company varchar(40), startdate date, enddate date,
+   description varchar(512));
+ 
+delete from JobHistory;
+insert into JobHistory values (1001, "Software Engineer", "Edwards Air Force Base", "1984-06-15", "1986-08-06",
+   "* Responsible for the management of 6,600 line Fortran77 "
+    "system UFTAS (Unified Flight Test Analysis System).\n "
+    "* Created 1,100 line Fortran77 system mini UFTAS , used by Fire & Ice test of Rockwell :"
+    "B1 Bomber @ Eglin Air Force Base, and part of Schweizer SA-2-37A in Horseheads, New York.\n" );
+
+insert into JobHistory values (1001, "Software Engineer", "Orbit Technology Corporation", "1994-02-02", "1996-02-02",
+   "* Responsible for design and development of new 1,230 line C++ Windows User Interface for Cad/Cam System.");
+
+select * from JobHistory
