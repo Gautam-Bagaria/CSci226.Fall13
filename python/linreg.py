@@ -146,6 +146,24 @@ def theta_x(theta, X):
       y += theta[i]*X[i]
    return y
 
+def csvread(filename):
+   import csv
+   reader = csv.reader(open(filename, "rb"), 
+                    delimiter=',', quoting=csv.QUOTE_NONE)
+
+   thereIsAHeader = False
+   header = []
+   records = []
+
+   if thereIsAHeader: header = reader.next()
+
+   for row, record in enumerate(reader):
+      a = []
+      for i in record:
+         a.append(float(i))
+      records.append(a)
+   return records
+
 test2()
 [[n, sum_x, sum_y, sum_x2, sum_y2, sum_xy], m, b, r] = linreg(y_item, x_item)
 X = load(x_item)
@@ -153,6 +171,7 @@ Y = load(y_item)
 plot(X,Y, m, b)
 var1 = (sum_x2/n - (sum_x/n)**2)
 var2 = np.var(X)
+np.savetxt('D:\\Documents\\druby\\tmp\\test.dat', X, delimiter=",")
 
 
                    
