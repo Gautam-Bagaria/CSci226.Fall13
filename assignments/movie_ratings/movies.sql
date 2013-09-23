@@ -4,10 +4,20 @@ use movies
 drop table movie_list;
 create table movie_list (mid int key, myear year, mname varchar(132));
 
+/* laptop */
 LOAD DATA 
 LOCAL INFILE 'C:/Users/Administrator/Documents/GitHub/CSci226.Fall13/assignments/movie_ratings/movie_list.1.csv' 
 INTO TABLE movie_list
 FIELDS TERMINATED BY ']';
+
+/* pc */
+LOAD DATA 
+LOCAL INFILE 'D:/Documents/GitHub/CSci226.Fall13/assignments/movie_ratings/movie_list.1.csv' 
+INTO TABLE movie_list
+FIELDS TERMINATED BY ']';
+
+
+
 
 delete from movie_list;
 select * from movie_list limit 100;
@@ -67,3 +77,10 @@ and b.mid = 313
 and c.mid = 420
 and d.mid = 465
 and e.mid = 588
+
+delete from movie_ratings
+/* pc */
+LOAD DATA 
+LOCAL INFILE 'D:/Documents/GitHub/CSci226.Fall13/assignments/movie_ratings/ratings.tabledata.csv' 
+INTO TABLE movie_ratings
+FIELDS TERMINATED BY ',';
