@@ -40,3 +40,11 @@ group by artist having count(*) > 10;
 select * from songs where artist like '%beatles%';
 select * from songs where AYear = 2013;
 select count(*) from songs where PK = 1;
+
+select * from songs where upper(artist) like upper('%eagles%' );
+select * from songs where upper(artist) like upper('%Allman%' );
+select * from songs where upper(artist) like upper('%Clearwater%' );
+
+select artist, track from songs where upper(artist) like upper('%eagles%' ) union
+select artist, track from songs where upper(artist) like upper('%Allman%' ) union
+select artist, track from songs where upper(artist) like upper('%Clearwater%' );

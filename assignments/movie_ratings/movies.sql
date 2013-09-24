@@ -84,3 +84,11 @@ LOAD DATA
 LOCAL INFILE 'D:/Documents/GitHub/CSci226.Fall13/assignments/movie_ratings/ratings.tabledata.csv' 
 INTO TABLE movie_ratings
 FIELDS TERMINATED BY ',';
+
+alter table movie_ratings add index (pid);
+alter table movie_ratings add index (mid);
+
+select count(*) from movie_ratings a, movie_ratings b where
+   a.mid = b.mid and
+   a.rating = b.rating and
+   a.pid < b.pid;
