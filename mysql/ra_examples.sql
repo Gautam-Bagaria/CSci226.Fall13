@@ -37,3 +37,27 @@ insert into RX (a, b)
 
 select * from RX
 select k, f from r1 natural join r2
+
+select * from R1;
+
+update R1 set C =null where k= 1
+
+select * from R1 where c < 5
+
+create table unknown (x  boolean, y boolean);
+insert into unknown values
+(true, true),
+(true, null),
+(true, false),
+(null, true),
+(null, null),
+(null, false),
+(false, true),
+(false, null),
+(false, false);
+
+select x, y, 
+x and y as 'x and y',
+x or y as 'x or y',
+not x as 'not x'
+from unknown;
