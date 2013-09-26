@@ -85,10 +85,29 @@ LOCAL INFILE 'D:/Documents/GitHub/CSci226.Fall13/assignments/movie_ratings/ratin
 INTO TABLE movie_ratings
 FIELDS TERMINATED BY ',';
 
+/* laptop */
+LOAD DATA 
+LOCAL INFILE 'C:/Users/Administrator/Documents/GitHub/CSci226.Fall13/assignments/movie_ratings/ratings.tabledata.csv' 
+INTO TABLE movie_ratings
+FIELDS TERMINATED BY ',';
+
+
 alter table movie_ratings add index (pid);
 alter table movie_ratings add index (mid);
+
+alter table movie_ratings drop index pid;
+alter table movie_ratings drop index mid;
 
 select count(*) from movie_ratings a, movie_ratings b where
    a.mid = b.mid and
    a.rating = b.rating and
    a.pid < b.pid;
+
+select count(*) from movie_ratings
+
+select * from movie_ratings natural join movie_list where pid = 1042 and rating in (1,5)
+into outfile '/tmp/user1042..1.5.csv'
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+;
