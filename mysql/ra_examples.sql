@@ -1,3 +1,4 @@
+use ratest;
 create table R1(K int, B int, C int, primary key (K));
 create table R2(K int, F int, primary key (K));
 create table R3(K int, D int, E int, primary key (K));
@@ -61,3 +62,19 @@ x and y as 'x and y',
 x or y as 'x or y',
 not x as 'not x'
 from unknown;
+
+select K from r1 where
+   K > any (select k from r1);
+
+create table c1 (x char(1), y char(1));
+create table c2 (z char(1));
+insert into c1 values ('A', 'a'), ('B','b'), ('C','c');
+insert into c2 value ('B')
+
+select x from c1 where
+   x > any (select x from c1);
+select x from c1 where
+   x > all (select z from c2);
+select x from c1 where
+   x <> all (select z from c2);
+
