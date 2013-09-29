@@ -48,3 +48,8 @@ select * from songs where upper(artist) like upper('%Clearwater%' );
 select artist, track from songs where upper(artist) like upper('%eagles%' ) union
 select artist, track from songs where upper(artist) like upper('%Allman%' ) union
 select artist, track from songs where upper(artist) like upper('%Clearwater%' );
+
+#Number ones of 1993
+select artist, track, DatePeaked from songs 
+where AYear = 1993 and High = 1
+order by DatePeaked
