@@ -1,3 +1,4 @@
+create database ratest
 use ratest;
 create table R1(K int, B int, C int, primary key (K));
 create table R2(K int, F int, primary key (K));
@@ -68,13 +69,17 @@ select K from r1 where
 
 create table c1 (x char(1), y char(1));
 create table c2 (z char(1));
-insert into c1 values ('A', 'a'), ('B','b'), ('C','c');
-insert into c2 value ('B')
+delete from c1;
+delete from c2;
+insert into c1 values ('A', 'a'), ('B','b'), ('C','c'),('D', 'd'),
+   ('E','e'),('F','f'),('G','g'),('H','h');
+insert into c2 value ('B'),('D')
 
+select * from c1;
 select x from c1 where
    x > any (select x from c1);
-select x from c1 where
+select x,y from c1 where
    x > all (select z from c2);
-select x from c1 where
+select x,y from c1 where
    x <> all (select z from c2);
 

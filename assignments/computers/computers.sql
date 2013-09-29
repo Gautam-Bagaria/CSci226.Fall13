@@ -171,3 +171,14 @@ into outfile '/tmp/test1.csv'
 FIELDS TERMINATED BY ','
 LINES TERMINATED BY '\n'
 ;
+
+select maker from manf ;
+
+select maker from manf
+   where maker > any (select maker from manf);
+
+select distinct(maker) from product where ctype = 'pc';
+
+select maker from manf
+   where maker <> all (select maker from product where ctype = 'pc');
+

@@ -18,7 +18,6 @@ FIELDS TERMINATED BY ']';
 
 
 
-
 delete from movie_list;
 select * from movie_list limit 100;
 
@@ -91,7 +90,6 @@ LOCAL INFILE 'C:/Users/Administrator/Documents/GitHub/CSci226.Fall13/assignments
 INTO TABLE movie_ratings
 FIELDS TERMINATED BY ',';
 
-
 alter table movie_ratings add index (pid);
 alter table movie_ratings add index (mid);
 
@@ -111,3 +109,46 @@ FIELDS TERMINATED BY ','
 ENCLOSED BY '"'
 LINES TERMINATED BY '\n'
 ;
+
+select a.mid, (select mname from movie_list where a.mid=mid), count(*) 
+from movie_ratings a
+group by a.mid
+having count(a.mid) > 100
+
+select a.mid
+from movie_ratings a
+group by a.mid
+having count(a.mid) > 100
+
+select count(*) from (
+select a.pid as x, b.pid as y, count(*) from movie_ratings a, movie_ratings b where
+   a.mid = b.mid and
+   a.rating = b.rating and
+   a.pid < b.pid
+group by a.pid, b.pid
+having count(a.pid) > 50
+) y
+
+select a.pid as x, b.pid as y, count(*) from movie_ratings a, movie_ratings b where
+   a.mid = b.mid and
+   a.rating = b.rating and
+   a.pid < b.pid
+group by a.pid, b.pid
+having count(a.pid) > 50
+into outfile '/tmp/users.50.csv'
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+
+select a.pid as x, b.pid as y, 
+(select mname from movie_list where a.mid=mid),
+a.rating
+from movie_ratings a, movie_ratings b where
+   a.mid = b.mid and
+   a.rating = b.rating and
+   a.pid < b.pid and
+   a.pid = 375 and
+   b.pid = 402
+
+select 375, count(*) as ratings, 154/count(*) as agree from movie_ratings where pid=375 union
+select 402, count(*) as ratings, 154/count(*) as agree from movie_ratings where pid=402 ;
