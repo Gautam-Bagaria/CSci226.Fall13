@@ -16,7 +16,7 @@ TABLE = "songs"
 x_item = 'PK'
 y_item = 'High'
 
-def plot(ciris):
+def plot(x_item, y_item, ciris):
    conn = MySQLdb.connect (host = "localhost",
                            user = "cs126",
                            passwd = "cs126",
@@ -36,7 +36,7 @@ def plot(ciris):
       row = cursor.fetchone ()
    cursor.close ()
    conn.close ()
-   plt.plot(X,Y,'o')
+   plt.plot(X,Y,'o', markersize=12, label= ciris)
 
 
 def test1():
@@ -57,11 +57,12 @@ def test2():
    global x_item, y_item, DATABASE, TABLE
    DATABASE = "cs126a"
    TABLE = "iris_2D"
-   x_item = 'x'
-   y_item = 'y'
-   plot('Iris-setosa')
-   plot('Iris-versicolor')
-   plot('Iris-virginica')
+   x_item = 'petallength'
+   y_item = 'petalwidth'
+   plot(x_item, y_item, 'Iris-setosa')
+   plot(x_item, y_item, 'Iris-versicolor')
+   plot(x_item, y_item, 'Iris-virginica')
+   plt.legend(loc='upper left', numpoints = 1)
    plt.show()
 
 
