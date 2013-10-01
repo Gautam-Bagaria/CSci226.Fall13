@@ -53,3 +53,9 @@ select artist, track from songs where upper(artist) like upper('%Clearwater%' );
 select artist, track, DatePeaked from songs 
 where AYear = 1993 and High = 1
 order by DatePeaked
+
+# number ones '72 - '79
+select artist, track, DatePeaked, PK from songs 
+where AYear >= 1972 and AYear <= 1979
+   and High = 1 
+order by PK

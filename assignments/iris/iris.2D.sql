@@ -1,5 +1,5 @@
-use cs126a
 create database iris2d
+use iris2d
 drop table iris_2d
 create table iris_2d (petallength float, petalwidth float, class varchar(30));
  
