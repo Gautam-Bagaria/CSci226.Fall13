@@ -25,3 +25,8 @@ drop table iris_2d;
 
 select class, avg(petallength), avg(petalwidth) from iris_2d 
 group by class order by avg(petallength), avg(petalwidth);
+
+select class, avg(petallength), avg(petalwidth), min(petallength) from iris_2d 
+group by class 
+having min(petallength) > 1
+order by avg(petallength), avg(petalwidth);
