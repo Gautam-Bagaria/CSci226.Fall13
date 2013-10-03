@@ -211,21 +211,51 @@ def learningCurves(X, Y):
    plt.legend(loc='upper right', numpoints = 1)
    plt.show()
 
+
+def qtest():
+   x = []
+   a1 = []
+   a2 = []
+   for i in range(5):
+      a1.append(i)
+      a2.append(i+3)
+   x.append(a1)
+   x.append(a2)
+   return x
+      
+def sigmoid(z):
+   return np.divide(1.0,np.add(1.0,np.exp( np.negative(z))))
+
+def costFunction(theta, X, Y):
+## J= (-1*y)'*log( sigmoid(X*theta) ) - (1-y)'*log(1-sigmoid(X*theta));
+## J = J / m ;
+## grad = ( (sigmoid(X*theta) - y)' *X) ./m;
+   m = np.shape(Y)[0]
+   s1 = sigmoid( np.dot(theta,X) )
+   j1 = np.dot(np.multiply(-1,Y), np.log(s1))
+   j2 = np.dot(np.subtract(1,Y), np.log(np.subtract(1,sigmoid(s1))))
+   J = (j1 - j2)/m
+
+   grad = np.divide( np.dot(X, np.subtract(s1, y)), m )
+   return [grad, J]
+
    
-test3()
-X = load(x_item)
-Y = load(y_item)
-X1 = np.column_stack((np.ones(len(X)),X))
-m = X1.shape[1]
-n = X1.shape[0]
-theta = np.zeros(m)
-[theta_out, points] = gradientDescent(X1,Y, theta, 0.05, n, 100)
+run = 0   
+if (run):
+   test3()
+   X = load(x_item)
+   Y = load(y_item)
+   X1 = np.column_stack((np.ones(len(X)),X))  
+   m = X1.shape[1]
+   n = X1.shape[0]
+   theta = np.zeros(m)
+   [theta_out, points] = gradientDescent(X1,Y, theta, 0.05, n, 100)
                      
-plot(X,Y, theta_out[1], theta_out[0])
+   plot(X,Y, theta_out[1], theta_out[0])
 # var1 = (sum_x2/n - (sum_x/n)**2)
 # var2 = np.var(X)
 # np.savetxt('D:\\Documents\\druby\\tmp\\test.dat', X, delimiter=",")
-learningCurves(X1, Y)
+   learningCurves(X1, Y)
 
 
                    
