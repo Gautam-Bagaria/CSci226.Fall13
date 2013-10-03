@@ -173,6 +173,9 @@ def csvread(filename):
 
 # m denotes the number of examples here, not the number of features
 def gradientDescent(x, y, theta, alpha, m, numIterations):
+    points = []
+    costs = []
+    count = []
     # original: xTrans = x.transpose()
     xTrans = x
     for i in range(0, numIterations):
@@ -182,14 +185,33 @@ def gradientDescent(x, y, theta, alpha, m, numIterations):
         # But to be consistent with the gradient, I include it)
         cost = np.sum(loss ** 2) / 2 * m
         print("Iteration %d | Cost: %f" % (i, cost))
+        count.append(i+1)
+        costs.append(cost)
         # avg gradient per example
         # original: gradient = np.dot(xTrans, loss) / m
         gradient = np.dot(loss, xTrans) / m
         # update
         theta = theta - alpha * gradient
-    return theta
+        if cost > 10**15 : break
+    points.append(count)
+    points.append(costs)
+    return [theta, points]
 
 
+def learningCurves(X, Y):
+   m = X.shape[1]
+   n = X.shape[0]
+   for alpha in [0.001,0.005, 0.01, 0.05, 0.1, 0.15]:
+#   for alpha in [0.05, 0.06, 0.07]:      
+      [theta_out, points]=gradientDescent( X, Y, np.zeros(m), alpha, n, 25 )
+      points[0]
+      points[1]
+      plt.plot(points[0],points[1],'-',label='Alpha='+str(alpha),linewidth=3)
+   plt.ylim([0,50000])
+   plt.legend(loc='upper right', numpoints = 1)
+   plt.show()
+
+   
 test3()
 X = load(x_item)
 Y = load(y_item)
@@ -197,12 +219,13 @@ X1 = np.column_stack((np.ones(len(X)),X))
 m = X1.shape[1]
 n = X1.shape[0]
 theta = np.zeros(m)
-theta_out= gradientDescent(X1,Y, theta, 0.05, n, 100)
+[theta_out, points] = gradientDescent(X1,Y, theta, 0.05, n, 100)
                      
 plot(X,Y, theta_out[1], theta_out[0])
-var1 = (sum_x2/n - (sum_x/n)**2)
-var2 = np.var(X)
-np.savetxt('D:\\Documents\\druby\\tmp\\test.dat', X, delimiter=",")
+# var1 = (sum_x2/n - (sum_x/n)**2)
+# var2 = np.var(X)
+# np.savetxt('D:\\Documents\\druby\\tmp\\test.dat', X, delimiter=",")
+learningCurves(X1, Y)
 
 
                    
